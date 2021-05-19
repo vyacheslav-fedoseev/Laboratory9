@@ -6,19 +6,16 @@
 <%@taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <%-- Импортировать собственную библиотеку тегов --%>
 <%@taglib prefix="ad" uri="http://Laboratory9.by/tags" %>
-<%-- Проанализировать значение параметра id. Если он пустой или нулевой - то
-объявление создаѐтся --%>
+<%-- Проанализировать значение параметра id. Если он пустой или нулевой - то объявление создаѐтся --%>
 <c:choose>
     <c:when test="${param.id==null || param.id==0}">
         <%-- Установить значение переменной title равным "Создание" --%>
         <c:set var="title" scope="page" value="Создание" />
     </c:when>
     <c:otherwise>
-        <%-- Установить значение переменной title равным "Редактирование"
-        --%>
+        <%-- Установить значение переменной title равным "Редактирование" --%>
         <c:set var="title" scope="page" value="Редактирование" />
-        <%-- Если в сессии не сохранилось данных с предыдущей неудачной
-        попытки --%>
+        <%-- Если в сессии не сохранилось данных с предыдущей неудачной попытки --%>
         <c:if test="${sessionScope.errorMessage==null}">
             <%-- Получить bean требуемого объявления --%>
             <ad:getAds id="${param.id}" var="ad" />
@@ -40,44 +37,39 @@
     <h1><c:out value="${title}" /> объявления</h1>
     <%-- Вставить тег отображения сообщения об ошибке --%>
     <my:errorMessage />
-    <%-- Отобразить форму редактирования объявления (с
-    подстановкой переданных данных) --%>
+    <%-- Отобразить форму редактирования объявления (с подстановкой переданных данных) --%>
     <form action="/Laboratory9_war_exploded/doUpdateAd.jsp" method="post">
-    <%-- Если переданный параметр id больше нуля (т.е. мы
-    редактируем объявление),
-    то сохранить его в невидимом поле --%>
-    <c:if test="${param.id>0}">
-        <input type="hidden" name="id"
-               value="${param.id}">
-    </c:if>
-    <table body="0" cellspacing="0" cellpadding="10"
-    width="90%">
-    <tr>
-    <td>Заголовок:</td>
-    <%-- Начальное значение поля ввода равно
-    текущей теме объявления --%>
-    <td><input type="text" name="subject"
-    value="${sessionScope.adData.subject}" style="width: 90%"></td>
-    </tr>
-    <tr>
-    <td>Текст:</td>
-    <%-- Начальное значение области текста
-    равно текущему тексту объявления --%>
-        <td><textarea name=body" rows="10"
-            style="" width="90%"><c:out value="${sessionScope.adData.body}"/>
-            </textarea></td>
-    </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td><input type="submit"
-                       value="Сохранить">
-                    <%-- При нажатии на кнопку
-                    "Отменить" возвращаемся на страницу кабинета --%>
-                <input type="button"
-                       value="Отменить" onclick="window.location='<c:url value="/cabinet.jsp" />';">
-            </td>
-        </tr>
-    </table>
+            <%-- Если переданный параметр id больше нуля (т.е. мы редактируем объявление), то сохранить его в невидимом поле --%>
+        <c:if test="${param.id>0}">
+            <input type="hidden" name="id"
+                   value="${param.id}">
+        </c:if>
+        <table body="0" cellspacing="0" cellpadding="10"
+               width="90%">
+            <tr>
+                <td>Заголовок:</td>
+                    <%-- Начальное значение поля ввода равно текущей теме объявления --%>
+                <td><input type="text" name="subject"
+                           value="${sessionScope.adData.subject}" style="width: 90%"></td>
+            </tr>
+            <tr>
+                <td>Текст:</td>
+                    <%-- Начальное значение области текста
+                    равно текущему тексту объявления --%>
+                <td><textarea name="body" rows="10"
+                              style="" width="90%"><c:out value="${sessionScope.adData.body}"/></textarea></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><input type="submit"
+                           value="Сохранить">
+                        <%-- При нажатии на кнопку
+                        "Отменить" возвращаемся на страницу кабинета --%>
+                    <input type="button"
+                           value="Отменить" onclick="window.location='<c:url value="/cabinet.jsp" />';">
+                </td>
+            </tr>
+        </table>
     </form>
 </my:layout1Column>
 <%-- Вставить нижний заголовок страницы --%>
