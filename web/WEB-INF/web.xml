@@ -36,7 +36,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID"
             <taglib-location>/WEB-INF/tlds/x.tld</taglib-location>
         </taglib>
         <taglib>
-            <taglib-uri>http://lab9.by/tags</taglib-uri>
+            <taglib-uri>http://Laboratory9.by/tags</taglib-uri>
             <taglib-location>/WEB-INF/tlds/ad.tld</taglib-location>
         </taglib>
     </jsp-config>
